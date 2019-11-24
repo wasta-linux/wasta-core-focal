@@ -1,0 +1,16 @@
+Source: wasta-core-focal
+Section: utils
+Priority: optional
+Maintainer: Rik Shaw <rikshaw76@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 4.4.0
+Homepage: https://github.com/wasta-linux/wasta-core-focal
+
+Package: wasta-core-focal
+Architecture: all
+Depends: gnupg, ${shlibs:Depends}, ${misc:Depends}
+Recommends: apt-xapian-index, at, debconf-utils, qt5-style-plugins, synaptic, wasta-backup, wasta-menus, wasta-offline, wasta-remastersys, wasta-resources-core
+Description: Wasta-Linux 20.04 Core
+ Wasta-Linux core system setup package for Ubuntu 20.04 'focal'
+ .
+ This package should be installed on any machine running Wasta-Linux 20.04
