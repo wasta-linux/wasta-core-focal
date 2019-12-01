@@ -131,27 +131,27 @@ apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
 apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
 
 # add LibreOffice 6.2 PPA
- if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list ];
- then
-     echo
-     echo "*** Adding LibreOffice 6.2 PPA"
-     echo
-     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-6-2/ubuntu $SERIES main" | \
-         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
-     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-2/ubuntu $SERIES main" | \
-         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
- else
-     # found, but ensure LibreOffice PPA ACTIVE (user could have accidentally disabled)
-     # DO NOT match any lines ending in #wasta
-     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
- fi
+# if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list ];
+# then
+#     echo
+#     echo "*** Adding LibreOffice 6.2 PPA"
+#     echo
+#     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-6-2/ubuntu $SERIES main" | \
+#         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
+#     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-2/ubuntu $SERIES main" | \
+#         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
+# else
+#     # found, but ensure LibreOffice PPA ACTIVE (user could have accidentally disabled)
+#     # DO NOT match any lines ending in #wasta
+#     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
+#        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
+# fi
 
-echo
-echo "*** Removing Older LibreOffice PPAs"
-echo
-rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0*
-rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1*
+#echo
+#echo "*** Removing Older LibreOffice PPAs"
+#echo
+#rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0*
+#rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1*
 
 # Add Skype repository
 if ! [ -e $APT_SOURCES_D/skype-stable.list ];
@@ -229,7 +229,6 @@ echo
 # bloom-desktop art-of-reading3: sil bloom
 # bookletimposer: pdf booklet / imposition tool
 # brasero: CD/DVD burner
-# btrfs-tools: filesystem utilities
 # catfish: more in-depth search than nemo gives (gnome-search-tool not available)
 # cheese: webcam recorder, picture taker
 # cifs-utils: "common internet filesystem utils" for fileshare utilities, etc.
@@ -351,7 +350,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
         art-of-reading3 \
     bookletimposer \
     brasero \
-    btrfs-tools \
     catfish \
     cheese \
     cifs-utils \

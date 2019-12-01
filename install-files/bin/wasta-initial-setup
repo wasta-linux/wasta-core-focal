@@ -136,17 +136,17 @@ then
     exit 1
 fi
 
-echo
-echo "*** Ensuring HWE stack is installed"
-echo
-$DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
-    linux-generic-hwe-18.04 \
-    xserver-xorg-hwe-18.04 \
-    virtualbox-guest-utils-hwe \
-    virtualbox-guest-x11-hwe"
-# note: virtualbox-guest-x11-hwe required but has dependency issue:
-#   https://bugs.launchpad.net/ubuntu/+source/virtualbox-hwe/+bug/1816386
-#   virtualbox-hwe copied to Wasta PPA until available in main repo
+#echo
+#echo "*** Ensuring HWE stack is installed"
+#echo
+#$DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
+#    linux-generic-hwe-18.04 \
+#    xserver-xorg-hwe-18.04 \
+#    virtualbox-guest-utils-hwe \
+#    virtualbox-guest-x11-hwe"
+## note: virtualbox-guest-x11-hwe required but has dependency issue:
+##   https://bugs.launchpad.net/ubuntu/+source/virtualbox-hwe/+bug/1816386
+##   virtualbox-hwe copied to Wasta PPA until available in main repo
 
 echo
 echo "*** Calling app-installs.sh script"
@@ -191,12 +191,12 @@ then
     fi
 fi
 
-if [ -x /usr/bin/wasta-layout-system ];
+if [ -x /usr/bin/cinnamon-layout-system ];
 then
     echo
-    echo "*** Setting wasta-layout cinnamon system default to redmond7"
+    echo "*** Setting cinnamon-layout cinnamon system default to redmond7"
     echo
-    wasta-layout-system redmond7
+    cinnamon-layout-system redmond7
 fi
 
 echo
