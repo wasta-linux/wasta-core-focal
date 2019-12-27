@@ -76,7 +76,7 @@ then
     # prompt user
     zenity --question --no-wrap --height=200 --width=450 \
         --title="wasta [Reset]" \
-        --window-icon=/usr/share/icons/hicolor/64x64/apps/wasta-linux.png \
+        --window-icon=/usr/share/icons/hicolor/scalable/apps/wasta-linux.svg \
         --text="<b>This utility will RESET ALL
 your Desktop Interface Settings.</b>
 
@@ -248,7 +248,7 @@ if ! [ "$AUTO" ];
 then
     # prompt user
     zenity --info --title "wasta [Reset]: Finished" --no-wrap --height=150 --width=450 \
-        --window-icon=/usr/share/icons/hicolor/64x64/apps/wasta-linux.png \
+        --window-icon=/usr/share/icons/hicolor/scalable/apps/wasta-linux.svg \
         --text="$MSG"
 else
     echo

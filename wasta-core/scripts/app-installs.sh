@@ -233,7 +233,7 @@ echo
 # cheese: webcam recorder, picture taker
 # cifs-utils: "common internet filesystem utils" for fileshare utilities, etc.
 # curl: terminal - download utility
-# dconf-cli, dconf-tools: gives tools for making settings adjustments
+# dconf-cli, dconf-editor: gives tools for making settings adjustments
 # debconf-utils: needed for debconf-get-selections, etc. for debconf configure
 # diodon: clipboard manager
 # dos2unix: terminal - convert line endings of files to / from windows to unix
@@ -267,8 +267,8 @@ echo
 # hfsprogs: for apple hfs compatiblity
 # htop: process browser
 # httrack: website download utility
-# imagemagick: terminal - image resizing, etc. (needed for nemo
-#   image resize action)
+# ice: desktop integration for webapps (developed by peppermint os)
+# imagemagick: terminal - image resizing, etc. (needed for nemo resize action)
 # inkscape: vector graphics editor
 # inotify-tools: terminal - watch for file changes
 # iperf: terminal - network bandwidth measuring
@@ -355,7 +355,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     cifs-utils \
     curl \
     dconf-cli \
-        dconf-tools \
+        dconf-editor \
     debconf-utils \
     diodon \
     dos2unix \
@@ -400,6 +400,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     hfsprogs \
     htop \
     httrack \
+    ice \
     imagemagick \
     inkscape \
     inotify-tools \
