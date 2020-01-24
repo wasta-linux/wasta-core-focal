@@ -3,7 +3,9 @@
 # ==============================================================================
 # wasta-core: app-installs.sh
 #
-#   2019-11-24 rik: initial focal script
+# 2019-11-24 rik: initial focal script
+# 2020-01-24 rik: temporarily removing bloom, removing duplicate entry of
+#   python-appindicator
 #
 # ==============================================================================
 
@@ -337,7 +339,8 @@ echo
 # xsltproc: terminal - xslt, xml conversion program
 # xul-ext-lightning: Thunderbird Lightning (calendar) Extension
 # youtube-dl: terminal - youtube / video downloads
-# zim, python-appindicator: wiki style note taking app
+# zim, python-appindicator: wiki style note taking app - appindicator needed
+#   for tray icon
 
 $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     adobe-flashplugin \
@@ -346,8 +349,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     apt-rdepends \
     apt-xapian-index \
     audacity lame \
-    bloom-desktop \
-        art-of-reading3 \
     bookletimposer \
     brasero \
     catfish \
@@ -428,7 +429,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     pandoc \
     papirus-icon-theme \
     pinta \
-    python-appindicator \
     qt5-style-plugins \
     redshift-gtk \
     rhythmbox \
