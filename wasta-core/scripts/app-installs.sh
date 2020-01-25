@@ -280,11 +280,8 @@ echo
 # klavaro: typing tutor
 # kmfl-keyboard-ipa: ipa keyboard for kmfl
 # libdvd-pkg: enables DVD playback (downloads and installs libdvdcss2)
-# libreoffice-base:
-# libreoffice-gnome: bionic: this includes -gtk3 which is needed for samba
-# libreoffice-gtk2: bionic: note that -gtk2 can't open samba files
-# libreoffice-sdbc-hsqldb: db backend for LO base
-# libreoffice-style-tango: color icon set (more usable than 14.04 "human")
+# libreoffice: install the full meta-package
+# libreoffice-sdbc-hsqldb: (pre-firebird) db backend for LO base
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
 # meld nautilus-compare: graphical text file compare utility
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
@@ -412,11 +409,8 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     klavaro \
     kmfl-keyboard-ipa \
     libdvd-pkg \
-    libreoffice-base \
-        libreoffice-gnome \
-        libreoffice-gtk2 \
+    libreoffice \
         libreoffice-sdbc-hsqldb \
-        libreoffice-style-tango \
     libtext-pdf-perl \
     meld \
         nautilus-compare \
@@ -466,7 +460,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     xmlstarlet \
     xsltproc \
     youtube-dl \
-    zim python-appindicator \
+    zim \
     "
 
     LASTERRORLEVEL=$?

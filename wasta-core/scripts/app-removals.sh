@@ -155,7 +155,9 @@ pkgToRemoveListFull="\
 pkgToRemoveList=""
 for pkgToRemove in $(echo $pkgToRemoveListFull); do
   $(dpkg --status $pkgToRemove &> /dev/null)
-  if [[ $? -eq 0 ]]; then
+  # errno:0 = exists. errno:1 = not exists. errno:2 = invalid name (eg: with *)
+  errno=$?
+  if [[ $errno -eq 0 ]] || [[ $errno -eq 2 ]]; then
     pkgToRemoveList="$pkgToRemoveList $pkgToRemove"
   fi
 done

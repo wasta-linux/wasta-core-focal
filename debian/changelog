@@ -1,3 +1,11 @@
+wasta-core-focal (0.1.5) focal; urgency=medium
+
+  * app-installs.sh: clean out unavailable python-appindicator
+  * app-installs.sh: use libreoffice meta-package
+  * app-removals.sh: -*'d packages weren't being removed: fixed.
+
+ -- Justin Luth <jluth@mail.com>  Sat, 25 Jan 2020 13:20:50 +0300
+
 wasta-core-focal (0.1.4) focal; urgency=medium
 
   * app-installs.sh: comment out bloom, remove duplicate
