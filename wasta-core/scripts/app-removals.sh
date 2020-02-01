@@ -76,7 +76,7 @@ echo
 # landscape-client-ui-install: pay service only for big corporations
 # mpv: media player - not sure how this got installed
 # nemo-preview: confusing for some
-# snapd: see below
+# snap snapd: see below
 # totem: not needed as vlc handles all video/audio
 # transmission: normal users doing torrents probably isn't preferred
 # ttf-* fonts: non-english font families
@@ -143,7 +143,7 @@ pkgToRemoveListFull="\
     landscape-client-ui-install \
     mpv \
     nemo-preview \
-    snapd \
+    snap snapd \
     totem \
         totem-common \
         totem-plugins \

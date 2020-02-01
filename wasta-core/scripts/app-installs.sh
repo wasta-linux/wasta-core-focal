@@ -6,6 +6,7 @@
 # 2019-11-24 rik: initial focal script
 # 2020-01-24 rik: temporarily removing bloom, removing duplicate entry of
 #   python-appindicator
+# 2020-02-01 rik: removing nautilus-compare, commenting out keyman ppa logic
 #
 # ==============================================================================
 
@@ -166,22 +167,24 @@ then
         tee $APT_SOURCES_D/skype-stable.list
 fi
 
+# TODO: Re-enable when keyman focal is available
+
 # add Keyman PPA
-if ! [ -e $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list ];
-then
-    echo
-    echo "*** Adding Keyman PPA"
-    echo
-    echo "deb http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
-        tee $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
-    echo "# deb-src http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
-        tee -a $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
- else
-     # found, but ensure Keyman PPA ACTIVE (user could have accidentally disabled)
-     # DO NOT match any lines ending in #wasta
-     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-        $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
-fi
+#if ! [ -e $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list ];
+#then
+#    echo
+#    echo "*** Adding Keyman PPA"
+#    echo
+#    echo "deb http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
+#        tee $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+#    echo "# deb-src http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
+#        tee -a $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+# else
+#     # found, but ensure Keyman PPA ACTIVE (user could have accidentally disabled)
+#     # DO NOT match any lines ending in #wasta
+#     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
+#        $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+#fi
 
 # 2017-11-29 rik: NOTE: pfsense caching will NOT work with this no-cache option
 #   set to True.  So disabling for bionic for now until get more input from
@@ -283,6 +286,7 @@ echo
 # libreoffice: install the full meta-package
 # libreoffice-sdbc-hsqldb: (pre-firebird) db backend for LO base
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
+# TODO: nautilus-compare not available for focal
 # meld nautilus-compare: graphical text file compare utility
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
@@ -413,7 +417,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
         libreoffice-sdbc-hsqldb \
     libtext-pdf-perl \
     meld \
-        nautilus-compare \
     mkusb-nox \
     modem-manager-gui \
     mtp-tools \

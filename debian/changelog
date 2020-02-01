@@ -1,3 +1,10 @@
+wasta-core-focal (0.1.6) focal; urgency=medium
+
+  * app-installs.sh: remove nautilus-compare, comment out keyman ppa logic
+  * app-removals.sh: remove snap (as well as snapd)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 01 Feb 2020 12:28:47 +0300
+
 wasta-core-focal (0.1.5) focal; urgency=medium
 
   * app-installs.sh: clean out unavailable python-appindicator
