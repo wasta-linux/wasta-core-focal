@@ -7,6 +7,7 @@
 # 2020-01-24 rik: temporarily removing bloom, removing duplicate entry of
 #   python-appindicator
 # 2020-02-01 rik: removing nautilus-compare, commenting out keyman ppa logic
+#   - removing ice: it pulls in chromium-browser which is only a snap.
 #
 # ==============================================================================
 
@@ -272,7 +273,6 @@ echo
 # hfsprogs: for apple hfs compatiblity
 # htop: process browser
 # httrack: website download utility
-# ice: desktop integration for webapps (developed by peppermint os)
 # imagemagick: terminal - image resizing, etc. (needed for nemo resize action)
 # inkscape: vector graphics editor
 # inotify-tools: terminal - watch for file changes
@@ -402,7 +402,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     hfsprogs \
     htop \
     httrack \
-    ice \
     imagemagick \
     inkscape \
     inotify-tools \

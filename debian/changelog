@@ -1,3 +1,10 @@
+wasta-core-focal (0.1.7) focal; urgency=medium
+
+  * app-intalls.sh: remove ice, since it pulls in chromium-browser (and thus
+    snapd)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 01 Feb 2020 14:29:58 +0300
+
 wasta-core-focal (0.1.6) focal; urgency=medium
 
   * app-installs.sh: remove nautilus-compare, comment out keyman ppa logic
