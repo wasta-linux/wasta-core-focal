@@ -1,3 +1,9 @@
+wasta-core-focal (0.1.9) focal; urgency=medium
+
+  * converted logo text to path so scales better
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 21 Mar 2020 16:36:21 +0300
+
 wasta-core-focal (0.1.8) focal; urgency=medium
 
   * padded logo
