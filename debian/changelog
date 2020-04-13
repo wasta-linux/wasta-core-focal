@@ -1,3 +1,11 @@
+wasta-core-focal (0.1.10) focal; urgency=medium
+
+  * change vga splash for remastersys
+  * additions to app-installs.sh
+  * cleanup wasta-reset
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 13 Apr 2020 16:58:14 -0500
+
 wasta-core-focal (0.1.9) focal; urgency=medium
 
   * converted logo text to path so scales better

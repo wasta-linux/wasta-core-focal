@@ -263,6 +263,7 @@ echo
 # gnome-logs: GUI log viewer
 # gnome-maps: GUI map viewer
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
+# gnome-packagekit: simple alternative to Synaptic
 # gnome-system-monitor:
 # gparted: partition manager
 # grsync: GUI rsync tool
@@ -277,7 +278,6 @@ echo
 # inkscape: vector graphics editor
 # inotify-tools: terminal - watch for file changes
 # iperf: terminal - network bandwidth measuring
-# kdenlive: video editor
 # keepassxc: password manager (xc is the community port that is more up to date)
 # keyman: keyman keyboard app
 # klavaro: typing tutor
@@ -298,13 +298,15 @@ echo
 # net-tools: terminal - basic utilities like ifconfig
 # pandoc: terminal - general markup converter
 # papirus-icon-theme:
+# pngcrush: terminal - png size reducer
 # pinta: MS Paint alternative: more simple for new users than gimp
 # qt5-style-plugins: needed for qt5 / gtk theme compatibility
 # redshift-gtk: redshift for blue light reduction
 # rhythmbox: music manager
+# shotcut: video editor
 # shotwell: photo editor / manager (can edit single files easily)
 # silcc: terminal - SIL consistent changes
-# simplescreenrecorder: screen recorder 
+# simplescreenrecorder: screen recorder
 # skypeforlinux: skype
 # soundconverter: convert audio formats
 # sound-juicer: rip CDs
@@ -391,6 +393,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     gnome-logs \
     gnome-maps \
     gnome-nettool \
+    gnome-packagekit \
     gnome-screenshot \
     gnome-system-monitor \
     gparted \
@@ -406,7 +409,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     inkscape \
     inotify-tools \
     iperf \
-    kdenlive \
     keepassxc \
     keyman \
     klavaro \
@@ -425,9 +427,11 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     pandoc \
     papirus-icon-theme \
     pinta \
+    pngcrush \
     qt5-style-plugins \
     redshift-gtk \
     rhythmbox \
+    shotcut \
     shotwell \
     silcc \
     simplescreenrecorder \

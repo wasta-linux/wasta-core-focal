@@ -46,6 +46,8 @@
 #       relying on the rescursive reset of org.cinnamon: some sub-schemas
 #       weren't getting reset otherwise.
 #   2018-02-28 rik: updating ubuntu.session to reset gnome not unity
+#   2020-03-28 rik: re-working cinnamon --replace since it was not exiting
+#       properly
 #
 # ==============================================================================
 
@@ -145,13 +147,7 @@ then
     gsettings set org.nemo.window-state sidebar-bookmark-breakpoint \
         "$SAVE_BOOKMARK_BREAKPOINT"
 
-    CINNAMON_ACTIVE=""
-    CINNAMON_ACTIVE=$(wmctrl -m | grep -i Muffin)
-    if [ "$CINNAMON_ACTIVE" ];
-    then
-        MSG+="<b>Cinnamon Active:</b> Restarting...\n\n"
-        cinnamon --replace &
-    fi
+    MSG+="User settings for <b>Cinnamon Desktop</b> reset.\n\n"
 fi
 
 if [ -e /usr/share/xsessions/ubuntu.desktop ] | \
@@ -186,15 +182,6 @@ then
     gsettings set org.gnome.desktop.input-sources sources "$SAVE_KEYBOARDS"
     gsettings set org.gnome.shell favorite-apps "$SAVE_GNOME_FAVORITES"
 
-    # check what Ubuntu session gives
-    GNOME_ACTIVE=""
-    GNOME_ACTIVE=$(wmctrl -m | grep -i GNOME)
-    if [ "$GNOME_ACTIVE" ];
-    then
-        MSG+="<b>GNOME Active:</b> Restarting...\n\n"
-        gnome-shell --replace &
-    fi
-
     MSG+="User settings for <b>GNOME Desktop</b> reset.\n\n"
 fi
 
@@ -226,23 +213,36 @@ then
     MSG+="User settings for <b>XFCE Desktop</b> reset.\n\n"
 fi
 
-MSG+="<b>Finished Processing:</b> You will need
-to restart to see the changes."
-
 # ------------------------------------------------------------------------------
-# TODO: Restart current session
+# Restart current session
 # ------------------------------------------------------------------------------
-# Searching for "Name: <Anything>".  If WM isn't initialized, will not match
-
-# Check if GNOME window manager is active
-# GNOME_ACTIVE=$(wmctrl -m | grep -i GNOME)
+sleep 2
 
 # Check if MUFFIN window manager is active (Cinnamon)
-# CINNAMON_ACTIVE=$(wmctrl -m | grep -i Muffin)
+CINNAMON_ACTIVE=""
+CINNAMON_ACTIVE=$(wmctrl -m | grep -i Muffin)
+if [ "$CINNAMON_ACTIVE" ];
+then
+    MSG+="<b>Cinnamon Active:</b> Restarting...\n\n"
+    nohup >/dev/null 2>&1 cinnamon --replace & >/dev/null 2>&1
+fi
+
+# Check if GNOME window manager is active
+# check what Ubuntu session gives
+GNOME_ACTIVE=""
+GNOME_ACTIVE=$(wmctrl -m | grep -i GNOME)
+if [ "$GNOME_ACTIVE" ];
+then
+    MSG+="<b>GNOME Active:</b> Restarting...\n\n"
+    nohup >/dev/null 2>&1 gnome-shell --replace & >/dev/null 2>&1
+fi
 
 # ------------------------------------------------------------------------------
 # Finished
 # ------------------------------------------------------------------------------
+
+MSG+="<b>Finished Processing:</b> You will need
+to restart to see the changes."
 
 if ! [ "$AUTO" ];
 then
