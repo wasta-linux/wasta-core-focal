@@ -435,7 +435,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     shotwell \
     silcc \
     simplescreenrecorder \
-    skypeforlinux \
     soundconverter \
     sound-juicer \
     ssh \

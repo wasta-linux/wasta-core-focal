@@ -1,3 +1,9 @@
+wasta-core-focal (0.9.0) focal; urgency=medium
+
+  * minor cleanup
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 14 Apr 2020 14:08:39 -0500
+
 wasta-core-focal (0.1.10) focal; urgency=medium
 
   * change vga splash for remastersys
