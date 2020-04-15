@@ -247,6 +247,7 @@ to restart to see the changes."
 if ! [ "$AUTO" ];
 then
     # prompt user
+    sleep 2
     zenity --info --title "wasta [Reset]: Finished" --no-wrap --height=150 --width=450 \
         --window-icon=/usr/share/icons/hicolor/scalable/apps/wasta-linux.svg \
         --text="$MSG"
