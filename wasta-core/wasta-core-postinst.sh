@@ -314,15 +314,6 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/ # > /dev/null 2>&1 || true;
 # /org/compiz/profiles/unity/plugins/expo/x-offset 48   NO SCHEMA
 
 # ------------------------------------------------------------------------------
-# Reduce "Swappiness"
-# ------------------------------------------------------------------------------
-# https://sites.google.com/site/easylinuxtipsproject/first
-#   (default is 60, which means it goes to swap too quickly when low ram)
-sed -i -e '$a vm.swappiness=10' \
-    -i -e '\#vm.swappiness#d' \
-    /etc/sysctl.conf
-
-# ------------------------------------------------------------------------------
 # Finished
 # ------------------------------------------------------------------------------
 echo

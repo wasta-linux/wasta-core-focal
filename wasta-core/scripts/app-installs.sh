@@ -247,6 +247,7 @@ echo
 # exfat-fuse, exfat-utils: compatibility for exfat formatted disks
 # extundelete: terminal - restore deleted files
 # fbreader: e-book reader
+# flatpak
 # font-manager: GUI for managing fonts
 # fonts-crosextra-caladea: metrically compatible with "Cambria"
 # fonts-crosextra-carlito: metrically compatible with "Calibri"
@@ -263,7 +264,6 @@ echo
 # gnome-logs: GUI log viewer
 # gnome-maps: GUI map viewer
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
-# gnome-packagekit: simple alternative to Synaptic
 # gnome-system-monitor:
 # gparted: partition manager
 # grsync: GUI rsync tool
@@ -288,6 +288,7 @@ echo
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
 # TODO: nautilus-compare not available for focal
 # meld nautilus-compare: graphical text file compare utility
+# mintinstall: allows seeing packages from external repos (ppas, sil)
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
 # mtp-tools: media-transfer-protocol tools: needed for smartphones
@@ -324,7 +325,6 @@ echo
 # ubiquity-frontend-gtk: add here so not needed to be downloaded by
 #   wasta-remastersys or if needs to be updated by app-adjustments.sh
 # ubiquity-slideshow-wasta:
-# ubuntu-software: not great but currently no better option
 # ubuntu-restricted-extras: mp3, flash, etc.
 # ubuntu-wallpapers-*: wallpaper collections
 # uget uget-integrator: GUI download manager (DTA in Firefox abandoned)
@@ -368,6 +368,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
         exfat-utils \
     extundelete \
     fbreader \
+    flatpak \
     font-manager \
     fonts-crosextra-caladea \
     fonts-crosextra-carlito \
@@ -393,7 +394,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     gnome-logs \
     gnome-maps \
     gnome-nettool \
-    gnome-packagekit \
     gnome-screenshot \
     gnome-system-monitor \
     gparted \
@@ -418,6 +418,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
         libreoffice-sdbc-hsqldb \
     libtext-pdf-perl \
     meld \
+    mintinstall \
     mkusb-nox \
     modem-manager-gui \
     mtp-tools \
@@ -449,7 +450,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     ttf-mscorefonts-installer \
     ubiquity-frontend-gtk \
     ubiquity-slideshow-wasta \
-    ubuntu-software \
     ubuntu-restricted-extras \
     uget uget-integrator \
     vim-tiny \
@@ -476,7 +476,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
 
 # ------------------------------------------------------------------------------
 # Language Support Files: install
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 echo
 echo "*** Installing Language Support Files"
 echo
@@ -485,6 +485,11 @@ SYSTEM_LANG=$(locale | grep LANG= | cut -d= -f2 | cut -d_ -f1)
 INSTALL_APPS=$(check-language-support -l $SYSTEM_LANG)
 
 apt-get $YES install $INSTALL_APPS
+
+# ------------------------------------------------------------------------------
+# Enable Flathub
+# ------------------------------------------------------------------------------
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # ------------------------------------------------------------------------------
 # wasta-remastersys conf updates

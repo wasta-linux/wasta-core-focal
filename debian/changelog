@@ -1,3 +1,9 @@
+wasta-core-focal (1.0.0) focal; urgency=medium
+
+  * app-installs: add flatpak, mintinstall, remove ubuntu-software
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 07 Jul 2020 15:03:33 -0500
+
 wasta-core-focal (0.9.1) focal; urgency=medium
 
   * wasta-reset: adding sleep before final prompt since cinnamon
