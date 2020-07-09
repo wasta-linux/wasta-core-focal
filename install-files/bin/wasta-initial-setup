@@ -211,14 +211,14 @@ if [ -z "${USE_ZSWAP}" ]; then
 fi
 [ "${UPDATE_GRUB}" == "Y" ] && update-grub
 
-# delete: wasta-cinnamon-focal gschema set redmond7 style defaults
-#if [ -x /usr/bin/cinnamon-layout-system ];
-#then
-#    echo
-#    echo "*** Setting cinnamon-layout cinnamon system default to redmond7"
-#    echo
-#    cinnamon-layout-system redmond7
-#fi
+# Set default layout to redmond7 (ensures menu-label removed besides gschema defaults)
+if [ -x /usr/bin/cinnamon-layout-system ];
+then
+    echo
+    echo "*** Setting cinnamon-layout cinnamon system default to redmond7"
+    echo
+    cinnamon-layout-system redmond7
+fi
 
 echo
 echo "*** Calling wasta-reset to re-initialize Wasta-Linux settings"

@@ -168,24 +168,22 @@ then
         tee $APT_SOURCES_D/skype-stable.list
 fi
 
-# TODO: Re-enable when keyman focal is available
-
 # add Keyman PPA
-#if ! [ -e $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list ];
-#then
-#    echo
-#    echo "*** Adding Keyman PPA"
-#    echo
-#    echo "deb http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
-#        tee $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
-#    echo "# deb-src http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
-#        tee -a $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
-# else
-#     # found, but ensure Keyman PPA ACTIVE (user could have accidentally disabled)
-#     # DO NOT match any lines ending in #wasta
-#     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-#        $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
-#fi
+if ! [ -e $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list ];
+then
+    echo
+    echo "*** Adding Keyman PPA"
+    echo
+    echo "deb http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
+        tee $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+    echo "# deb-src http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
+        tee -a $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+ else
+     # found, but ensure Keyman PPA ACTIVE (user could have accidentally disabled)
+     # DO NOT match any lines ending in #wasta
+     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
+        $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+fi
 
 # 2017-11-29 rik: NOTE: pfsense caching will NOT work with this no-cache option
 #   set to True.  So disabling for bionic for now until get more input from
@@ -221,7 +219,7 @@ $DEBIAN_NONINERACTIVE apt-get $YES dist-upgrade
 
 # ------------------------------------------------------------------------------
 # Standard package installs for all systems
-# -----------------------------------------ri-------------------------------------
+# ------------------------------------------------------------------------------
 
 echo
 echo "*** Standard Installs"
@@ -286,8 +284,7 @@ echo
 # libreoffice: install the full meta-package
 # libreoffice-sdbc-hsqldb: (pre-firebird) db backend for LO base
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
-# TODO: nautilus-compare not available for focal
-# meld nautilus-compare: graphical text file compare utility
+# meld: graphical text file compare utility
 # mintinstall: allows seeing packages from external repos (ppas, sil)
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
@@ -313,7 +310,7 @@ echo
 # sound-juicer: rip CDs
 # ssh: terminal - remote access
 # synaptic: more advanced package manager
-#   - apt-xapian-index: for synpatic indexing
+#   - apt-xapian-index: for synaptic indexing
 # sysstat: terminal - provides sar: system activity reporter
 # teckit: terminal - SIL teckit
 # testdisk: terminal - photorec tool for recovery of deleted files
@@ -342,8 +339,7 @@ echo
 # xsltproc: terminal - xslt, xml conversion program
 # xul-ext-lightning: Thunderbird Lightning (calendar) Extension
 # youtube-dl: terminal - youtube / video downloads
-# zim, python-appindicator: wiki style note taking app - appindicator needed
-#   for tray icon
+# zim: wiki style note taking app
 
 $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     adobe-flashplugin \
@@ -352,6 +348,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     apt-rdepends \
     apt-xapian-index \
     audacity lame \
+    bloom-desktop art-of-reading3 \
     bookletimposer \
     brasero \
     catfish \
