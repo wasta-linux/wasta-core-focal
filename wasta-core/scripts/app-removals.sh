@@ -71,6 +71,7 @@ echo
 # glipper: we now use diodon
 # gnome-flashback: not sure how this got installed, but don't want as default
 # gnome-orca: screen reader
+# gnome-software: high RAM and CPU use, doesn't display SIL / Wasta apps
 # gnome-sushi:confusing for some
 # keepassx: keepassxc now preferred
 # landscape-client-ui-install: pay service only for big corporations
@@ -138,6 +139,7 @@ pkgToRemoveListFull="\
     glipper \
     gnome-flashback \
     gnome-orca \
+    gnome-software \
     gnome-sushi unoconv \
     keepassx \
     landscape-client-ui-install \

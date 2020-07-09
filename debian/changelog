@@ -1,3 +1,9 @@
+wasta-core-focal (1.0.2) focal; urgency=medium
+
+  * app-removals: REMOVE gnome-software (going with mintinstall)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Thu, 09 Jul 2020 14:42:18 -0500
+
 wasta-core-focal (1.0.1) focal; urgency=medium
 
   * re-enable keyman ppa
