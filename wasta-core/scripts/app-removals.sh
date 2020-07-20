@@ -6,6 +6,8 @@
 #   This script will remove apps deemed "unnecessary" for default users.
 #
 #   2019-11-24 rik: initial focal script
+#   2020-07-20 rik: separate out snapd and gnome-software removals so users
+#       could opt to NOT purge them
 #
 # ==============================================================================
 
@@ -65,27 +67,19 @@ echo
 #   because will need interaction to setup secureboot keys
 # empathy: chat client
 # fonts-noto-cjk: conflicts with font-manager: newer font-manager from ppa
-#       handles it, but it is too different to use
+#   handles it, but it is too different to use
 # fonts-*: non-english fonts
-# gcolor2: color picker (but we upgraded to gcolor3)
-# glipper: we now use diodon
-# gnome-flashback: not sure how this got installed, but don't want as default
-# gnome-orca: screen reader
+#   ttf-* fonts: non-english font families
 # gnome-software: high RAM and CPU use, doesn't display SIL / Wasta apps
 # gnome-sushi:confusing for some
-# keepassx: keepassxc now preferred
 # landscape-client-ui-install: pay service only for big corporations
 # mpv: media player - not sure how this got installed
-# nemo-preview: confusing for some
-# snap snapd: see below
+# snapd: default wasta-linux won't ship with snapd installed
 # totem: not needed as vlc handles all video/audio
 # transmission: normal users doing torrents probably isn't preferred
-# ttf-* fonts: non-english font families
 # unity-webapps-common: amazon shopping lens, etc.
 # webbrowser-app: ubuntu web browser brought in by unity-tweak-tool
 # whoopsie: ubuntu crash report system but hangs shutdown
-# xterm:
-#   - removing it will remove scripture-app-builder, etc. so not removing
 
 # 2016-05-04 rik: if attempting to remove a package that doesn't exist (such
 #   as can happen when using wasta-offline "offline only mode") apt-get purge
@@ -135,25 +129,52 @@ pkgToRemoveListFull="\
         ttf-thai-tlwg \
         ttf-unfonts-core \
         ttf-wqy-microhei \
-    gcolor2 \
-    glipper \
-    gnome-flashback \
-    gnome-orca \
-    gnome-software \
     gnome-sushi unoconv \
-    keepassx \
     landscape-client-ui-install \
     mpv \
-    nemo-preview \
     snap snapd \
     totem \
         totem-common \
         totem-plugins \
-    transmission-common \
+    transmission transmission-common \
     unity-webapps-common \
     webbrowser-app \
     whoopsie"
 
+pkgToRemoveList=""
+for pkgToRemove in $(echo $pkgToRemoveListFull); do
+  $(dpkg --status $pkgToRemove &> /dev/null)
+  # errno:0 = exists. errno:1 = not exists. errno:2 = invalid name (eg: with *)
+  errno=$?
+  if [[ $errno -eq 0 ]] || [[ $errno -eq 2 ]]; then
+    pkgToRemoveList="$pkgToRemoveList $pkgToRemove"
+  fi
+done
+
+apt-get $YES purge $pkgToRemoveList
+
+# ------------------------------------------------------------------------------
+# separately remove 'snapd' since some users may want to keep
+# ------------------------------------------------------------------------------
+
+pkgToRemoveListFull="snapd"
+pkgToRemoveList=""
+for pkgToRemove in $(echo $pkgToRemoveListFull); do
+  $(dpkg --status $pkgToRemove &> /dev/null)
+  # errno:0 = exists. errno:1 = not exists. errno:2 = invalid name (eg: with *)
+  errno=$?
+  if [[ $errno -eq 0 ]] || [[ $errno -eq 2 ]]; then
+    pkgToRemoveList="$pkgToRemoveList $pkgToRemove"
+  fi
+done
+
+apt-get $YES purge $pkgToRemoveList
+
+# ------------------------------------------------------------------------------
+# separately remove 'gnome-software' since some users may want to keep
+# ------------------------------------------------------------------------------
+
+pkgToRemoveListFull="gnome-software"
 pkgToRemoveList=""
 for pkgToRemove in $(echo $pkgToRemoveListFull); do
   $(dpkg --status $pkgToRemove &> /dev/null)
@@ -179,28 +200,6 @@ if [ ! -x /usr/bin/whoopsie ];
 then
     rm -rf /var/lib/whoopsie
 fi
-
-# ------------------------------------------------------------------------------
-# snap cleanup
-# ------------------------------------------------------------------------------
-
-#2018-09-05 rik: removing snapd from Wasta-Linux 18.04: installed
-#   it takes up huge space (/var/lib/snapd is approx. 800MB) and 
-#   there is no way to disable auto-updates which our users are not
-#   going to be happy with
-#
-# rik: these snaps don't integrate well with the theme and are slow to start
-#   so for 18.04 we will REMOVE them and install their traditional counterparts
-#snap remove \
-#    gnome-calculator \
-#    gnome-characters \
-#    gnome-logs \
-#    gnome-system-monitor \
-#    gnome-3-26-1604 \
-#    gtk-common-themes
-
-#rm /var/lib/snapd/snaps/*.snap
-#rm /var/lib/snapd/seed/snaps/*.snap
 
 # ------------------------------------------------------------------------------
 # run autoremove to cleanout unneeded dependent packages

@@ -1,3 +1,11 @@
+wasta-core-focal (1.0.3) focal; urgency=medium
+
+  * wasta-reset: change restart of gnome-shell
+  * app-installs: add calibre
+  * app-removals: split out snapd and gnome-software removals
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 20 Jul 2020 12:14:03 -0500
+
 wasta-core-focal (1.0.2) focal; urgency=medium
 
   * app-removals: REMOVE gnome-software (going with mintinstall)

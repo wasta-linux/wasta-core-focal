@@ -48,6 +48,7 @@
 #   2018-02-28 rik: updating ubuntu.session to reset gnome not unity
 #   2020-03-28 rik: re-working cinnamon --replace since it was not exiting
 #       properly
+#   2020-07-20 rik: restart gnome-shell with killall rather than replace command
 #
 # ==============================================================================
 
@@ -234,7 +235,8 @@ GNOME_ACTIVE=$(wmctrl -m | grep -i GNOME)
 if [ "$GNOME_ACTIVE" ];
 then
     MSG+="<b>GNOME Active:</b> Restarting...\n\n"
-    nohup >/dev/null 2>&1 gnome-shell --replace & >/dev/null 2>&1
+    killall -SIGQUIT gnome-shell
+    # nohup >/dev/null 2>&1 gnome-shell --replace & >/dev/null 2>&1
 fi
 
 # ------------------------------------------------------------------------------

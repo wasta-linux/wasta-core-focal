@@ -8,6 +8,7 @@
 #   python-appindicator
 # 2020-02-01 rik: removing nautilus-compare, commenting out keyman ppa logic
 #   - removing ice: it pulls in chromium-browser which is only a snap.
+# 2020-07-20 rik: add calibre
 #
 # ==============================================================================
 
@@ -233,18 +234,18 @@ echo
 # bloom-desktop art-of-reading3: sil bloom
 # bookletimposer: pdf booklet / imposition tool
 # brasero: CD/DVD burner
+# calibre: e-book reader, utility
 # catfish: more in-depth search than nemo gives (gnome-search-tool not available)
 # cheese: webcam recorder, picture taker
 # cifs-utils: "common internet filesystem utils" for fileshare utilities, etc.
 # curl: terminal - download utility
-# dconf-cli, dconf-editor: gives tools for making settings adjustments
+# dconf-cli dconf-editor: gives tools for making settings adjustments
 # debconf-utils: needed for debconf-get-selections, etc. for debconf configure
 # diodon: clipboard manager
 # dos2unix: terminal - convert line endings of files to / from windows to unix
 # easytag: GUI ID3 tag editor
 # exfat-fuse, exfat-utils: compatibility for exfat formatted disks
 # extundelete: terminal - restore deleted files
-# fbreader: e-book reader
 # flatpak
 # font-manager: GUI for managing fonts
 # fonts-crosextra-caladea: metrically compatible with "Cambria"
@@ -255,15 +256,16 @@ echo
 # gdebi: graphical .deb installer
 # gimp: advanced graphics editor
 # git: terminal - command-line git
-# goldendict: more advanced dictionary/thesaurus tool than artha
+# goldendict goldendict-wordnet: more advanced dictionary/thesaurus tool than artha
 # gnome-calculator
 # gnome-clocks: multi-timezone clocks, timers, alarms
 # gnome-font-viewer: better than "font-manager" for just viewing a font file.
 # gnome-logs: GUI log viewer
 # gnome-maps: GUI map viewer
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
-# gnome-system-monitor:
-# gparted: partition manager
+# gnome-screenshot: GUI
+# gnome-system-monitor: GUI
+# gparted: GUI partition manager
 # grsync: GUI rsync tool
 # gucharmap: gnome character map (traditional)
 # gufw: GUI for "uncomplicated firewall"
@@ -289,23 +291,20 @@ echo
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
 # mtp-tools: media-transfer-protocol tools: needed for smartphones
-# myspell-en-gb: spell checker for English (UK): needed for Libre Office
-# nautilus-compare: nautilus integration with meld
 # ncdu: terminal - ncurses disk usage analyzer tool
 # nethogs: CLI network monitor showing per application net usage
 # net-tools: terminal - basic utilities like ifconfig
 # pandoc: terminal - general markup converter
-# papirus-icon-theme:
-# pngcrush: terminal - png size reducer
 # pinta: MS Paint alternative: more simple for new users than gimp
+# pngcrush: terminal - png size reducer
 # qt5-style-plugins: needed for qt5 / gtk theme compatibility
 # redshift-gtk: redshift for blue light reduction
 # rhythmbox: music manager
 # shotcut: video editor
 # shotwell: photo editor / manager (can edit single files easily)
+# shutter: GUI - powerful screenshot tool
 # silcc: terminal - SIL consistent changes
 # simplescreenrecorder: screen recorder
-# skypeforlinux: skype
 # soundconverter: convert audio formats
 # sound-juicer: rip CDs
 # ssh: terminal - remote access
@@ -323,12 +322,11 @@ echo
 #   wasta-remastersys or if needs to be updated by app-adjustments.sh
 # ubiquity-slideshow-wasta:
 # ubuntu-restricted-extras: mp3, flash, etc.
-# ubuntu-wallpapers-*: wallpaper collections
 # uget uget-integrator: GUI download manager (DTA in Firefox abandoned)
 # vim-tiny: terminal - text editor (don't want FULL vim or else in main menu)
 # vlc: play any audio or video files
 # wasta-backup: GUI for rdiff-backup
-# wasta-ibus-bionic: wasta customization of ibus
+# wasta-ibus-focal: wasta customization of ibus
 # wasta-menus: applicationmenu limiting system
 # wasta-offline wasta-offline-setup: offline updates and installs
 # wasta-papirus papirus-icon-theme: more 'modern' icon theme
@@ -337,7 +335,6 @@ echo
 # wavemon: terminal - for wireless network diagonstics
 # xmlstarlet: terminal - reading / writing to xml files
 # xsltproc: terminal - xslt, xml conversion program
-# xul-ext-lightning: Thunderbird Lightning (calendar) Extension
 # youtube-dl: terminal - youtube / video downloads
 # zim: wiki style note taking app
 
@@ -346,25 +343,22 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     aisleriot \
     android-tools-adb \
     apt-rdepends \
-    apt-xapian-index \
     audacity lame \
     bloom-desktop art-of-reading3 \
     bookletimposer \
     brasero \
+    calibre \
     catfish \
     cheese \
     cifs-utils \
     curl \
-    dconf-cli \
-        dconf-editor \
+    dconf-editor dconf-cli \
     debconf-utils \
     diodon \
     dos2unix \
     easytag \
-    exfat-fuse \
-        exfat-utils \
+    exfat-fuse exfat-utils \
     extundelete \
-    fbreader \
     flatpak \
     font-manager \
     fonts-crosextra-caladea \
@@ -423,7 +417,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     nethogs \
     net-tools \
     pandoc \
-    papirus-icon-theme \
     pinta \
     pngcrush \
     qt5-style-plugins \
@@ -431,13 +424,14 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     rhythmbox \
     shotcut \
     shotwell \
+    shutter \
     silcc \
     simplescreenrecorder \
     soundconverter \
     sound-juicer \
     ssh \
-    sysstat \
     synaptic apt-xapian-index \
+    sysstat \
     teckit \
     testdisk \
     thunderbird xul-ext-lightning \
@@ -445,8 +439,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     tlp \
     traceroute \
     ttf-mscorefonts-installer \
-    ubiquity-frontend-gtk \
-    ubiquity-slideshow-wasta \
+    ubiquity-frontend-gtk ubiquity-slideshow-wasta \
     ubuntu-restricted-extras \
     uget uget-integrator \
     vim-tiny \
