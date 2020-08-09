@@ -74,7 +74,6 @@ echo
 # gnome-sushi:confusing for some
 # landscape-client-ui-install: pay service only for big corporations
 # mpv: media player - not sure how this got installed
-# snapd: default wasta-linux won't ship with snapd installed
 # totem: not needed as vlc handles all video/audio
 # transmission: normal users doing torrents probably isn't preferred
 # unity-webapps-common: amazon shopping lens, etc.
@@ -132,7 +131,6 @@ pkgToRemoveListFull="\
     gnome-sushi unoconv \
     landscape-client-ui-install \
     mpv \
-    snap snapd \
     totem \
         totem-common \
         totem-plugins \
