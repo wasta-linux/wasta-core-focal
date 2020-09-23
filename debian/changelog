@@ -1,3 +1,9 @@
+wasta-core-focal (1.0.6) focal; urgency=medium
+
+  * debian/control: correct name
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 23 Sep 2020 11:35:59 +0300
+
 wasta-core-focal (1.0.5) focal; urgency=medium
 
   * debian/control: adding appmenu-registrar and vala-panel-appmenu-common

@@ -9,7 +9,7 @@ Homepage: https://github.com/wasta-linux/wasta-core-focal
 Package: wasta-core-focal
 Architecture: all
 Depends: gnupg, ${misc:Depends}
-Recommends: appmenu-registrar, apt-xapian-index, at, debconf-utils, qt5-style-plugins, synaptic, wasta-backup, wasta-menus, wasta-offline, wasta-remastersys, wasta-resources-core, appmenu-registrar, vala-appmenu-panel-common
+Recommends: appmenu-registrar, apt-xapian-index, at, debconf-utils, qt5-style-plugins, synaptic, wasta-backup, wasta-menus, wasta-offline, wasta-remastersys, wasta-resources-core, appmenu-registrar, vala-panel-appmenu-common
 Description: Wasta-Linux 20.04 Core
  Wasta-Linux core system setup package for Ubuntu 20.04 'focal'
  .
