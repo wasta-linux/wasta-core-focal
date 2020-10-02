@@ -193,7 +193,6 @@ then
     fi
 fi
 
-bash wasta-enable-zswap
 echo
 echo "*** Running wasta-enable-zswap"
 echo
