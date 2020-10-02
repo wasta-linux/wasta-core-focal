@@ -62,6 +62,18 @@ if [ "$(whoami)" != "root" ]; then
     exit $LASTERRORLEVEL
 fi
 
+# ------------------------------------------------------------------------------
+# Initial Setup
+# ------------------------------------------------------------------------------
+
+# if 'auto' parameter passed, run non-interactively
+if [ "$1" == "auto" ];
+then
+    AUTO="auto"
+else
+    AUTO=""
+fi
+
 echo
 echo "========================================================================="
 echo "=== Wasta-Linux Enable ZSWAP ============================================"
@@ -71,29 +83,40 @@ echo "Ubuntu / Wasta-Linux 20.04 swaps really easily, which kills performance."
 echo "zswap uses *COMPRESSED* RAM to buffer swap before writing to disk."
 echo "This is good for SSDs (less writing), and good for HDDs (no stalling)."
 echo "zswap should NOT be used with zram (uncompress/recompress shuffling)."
-echo
-echo "Enabling zswap......"
-echo
 
 USE_ZSWAP=$(grep zswap.enabled=1 /etc/default/grub)
-if [ -z "${USE_ZSWAP}" ]; then
-  echo && echo
-  [ "${AUTO}" ] || read -p "Enable zswap to use compressed RAM for a swap buffer (Y/n) " USE_ZSWAP
-  if [ "${USE_ZSWAP^^}" != "N" ]; then
-    sed -i -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s| zswap.enabled=[^ "]*||' \
-           -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s|"$| zswap.enabled=1"|' \
-           -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s| zswap.zpool=[^ "]*||' \
-           -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s|"$| zswap.zpool=z3fold"|' \
-      /etc/default/grub
-    UPDATE_GRUB=Y
-  fi
+if [ -z "${USE_ZSWAP}" ];
+then
+    echo
+
+    if [ "${AUTO}" ];
+    then
+        echo "Enabling zswap...."
+    else
+        read -p "Enable zswap to use compressed RAM for a swap buffer? (Y/n) " USE_ZSWAP
+    fi
+
+    echo
+
+    if [ "${USE_ZSWAP^^}" != "N" ]; then
+        sed -i -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s| zswap.enabled=[^ "]*||' \
+            -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s|"$| zswap.enabled=1"|' \
+            -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s| zswap.zpool=[^ "]*||' \
+            -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s|"$| zswap.zpool=z3fold"|' \
+            /etc/default/grub
+        UPDATE_GRUB=Y
+    fi
+else
+echo
+echo "No processing needed: zswap already enabled."
+echo
 fi
 [ "${UPDATE_GRUB}" == "Y" ] && update-grub
 
 # ------------------------------------------------------------------------------
 # Finished
 # ------------------------------------------------------------------------------
-printf "\n\n\n\n\n\n"
+printf "\n\n"
 echo "========================================================================="
 echo "=== Script Finished ====================================================="
 echo "========================================================================="

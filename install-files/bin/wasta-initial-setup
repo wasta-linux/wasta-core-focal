@@ -196,7 +196,7 @@ fi
 echo
 echo "*** Running wasta-enable-zswap"
 echo
-bash wasta-enable-zswap
+bash wasta-enable-zswap $AUTO
 LASTERRORLEVEL=$?
 if [ "$LASTERRORLEVEL" -ne "0" ];
 then
