@@ -1,3 +1,9 @@
+wasta-core-focal (1.0.7) focal; urgency=medium
+
+  * extract zswap enabling to separate script
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 02 Oct 2020 09:11:16 +0300
+
 wasta-core-focal (1.0.6) focal; urgency=medium
 
   * debian/control: correct name

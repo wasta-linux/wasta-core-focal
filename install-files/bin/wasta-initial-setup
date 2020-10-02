@@ -15,6 +15,7 @@
 #   2019-02-23 rik: installing hwe stack
 #   2019-03-08 rik: setting redmond7 as wasta-layout system default
 #   2020-02-01 jcl: add zswap to kernel boot (compressed RAM buffer for swap)
+#   2020-10-02 rik: extracting zswap enable to separate script
 #
 # ==============================================================================
 
@@ -192,24 +193,19 @@ then
     fi
 fi
 
-# 20.04 swaps really easily, which kills performance.
-# zswap uses *COMPRESSED* RAM to buffer swap before writing to disk.
-# This is good for SSDs (less writing), and good for HDDs (no stalling).
-# zswap should not be used with zram (uncompress/recompress shuffling).
-USE_ZSWAP=$(grep zswap.enabled=1 /etc/default/grub)
-if [ -z "${USE_ZSWAP}" ]; then
-  echo && echo
-  [ "${AUTO}" ] || read -p "Enable zswap to use compressed RAM for a swap buffer (Y/n) " USE_ZSWAP
-  if [ "${USE_ZSWAP^^}" != "N" ]; then
-    sed -i -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s| zswap.enabled=[^ "]*||' \
-           -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s|"$| zswap.enabled=1"|' \
-           -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s| zswap.zpool=[^ "]*||' \
-           -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s|"$| zswap.zpool=z3fold"|' \
-      /etc/default/grub
-    UPDATE_GRUB=Y
-  fi
+bash wasta-enable-zswap
+echo
+echo "*** Running wasta-enable-zswap"
+echo
+bash wasta-enable-zswap
+LASTERRORLEVEL=$?
+if [ "$LASTERRORLEVEL" -ne "0" ];
+then
+    echo
+    echo " *** ERROR in return from wasta-enable-zswap. Exiting."
+    echo
+    exit 1
 fi
-[ "${UPDATE_GRUB}" == "Y" ] && update-grub
 
 # Set default layout to redmond7 (ensures menu-label removed besides gschema defaults)
 if [ -x /usr/bin/cinnamon-layout-system ];
