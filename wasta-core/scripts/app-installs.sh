@@ -317,6 +317,7 @@ echo
 # tldr: terminal - gives 'tldr' summary of manpages
 # tlp: laptop power savings
 # traceroute: terminal
+# tt-bandwidth-manager-gui: graphical frontend to limit bandwidth per app
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
 # ubiquity-frontend-gtk: add here so not needed to be downloaded by
 #   wasta-remastersys or if needs to be updated by app-adjustments.sh
@@ -438,6 +439,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     tldr \
     tlp \
     traceroute \
+    tt-bandwidth-manager-gui \
     ttf-mscorefonts-installer \
     ubiquity-frontend-gtk ubiquity-slideshow-wasta \
     ubuntu-restricted-extras \
