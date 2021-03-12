@@ -6,6 +6,7 @@
 #   Needed for 20.04 as swap is triggered too easily
 #
 #   2020-10-02 rik: initial script
+#   2021-03-12 rik: update-initramfs called to apply z3fold module
 #
 # ==============================================================================
 
@@ -98,13 +99,23 @@ then
 
     echo
 
-    if [ "${USE_ZSWAP^^}" != "N" ]; then
+    if [ "${USE_ZSWAP^^}" != "N" ];
+    then
         sed -i -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s| zswap.enabled=[^ "]*||' \
             -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s|"$| zswap.enabled=1"|' \
             -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s| zswap.zpool=[^ "]*||' \
             -e '\|^GRUB_CMDLINE_LINUX_DEFAULT| s|"$| zswap.zpool=z3fold"|' \
             /etc/default/grub
-        UPDATE_GRUB=Y
+
+        # update grub to enable zswap grub parameters
+        update-grub
+
+        # z3fold is the preferred compression algorithm for zswap. We set this
+        # in /usr/share/initramfs-tools/modules.d/10-wasta-z3fold, but to ensure
+        # it is active, we need to update initramfs
+
+        # update initramfs to apply z3fold module
+        update-initramfs -u
     fi
 else
 echo

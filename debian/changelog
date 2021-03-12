@@ -1,3 +1,10 @@
+wasta-core-focal (20.04.2.2) focal; urgency=medium
+
+  * install-files: add modules.d/10-wasta-z3fold to enable z3fold
+    compression algorithm for zswap
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 12 Mar 2021 13:55:11 +0300
+
 wasta-core-focal (20.04.2.1) focal; urgency=medium
 
   * add /etc/sysctl.d/90-wasta-swappiness.conf to set
