@@ -1,3 +1,10 @@
+wasta-core-focal (20.04.2.1) focal; urgency=medium
+
+  * add /etc/sysctl.d/90-wasta-swappiness.conf to set
+    vm.swappiness=10
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 12 Mar 2021 12:17:32 +0300
+
 wasta-core-focal (20.04.2.0) focal; urgency=medium
 
   * adding tt-bandwidth-manager-gui as default install
