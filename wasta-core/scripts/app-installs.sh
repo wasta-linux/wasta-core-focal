@@ -9,6 +9,9 @@
 # 2020-02-01 rik: removing nautilus-compare, commenting out keyman ppa logic
 #   - removing ice: it pulls in chromium-browser which is only a snap.
 # 2020-07-20 rik: add calibre
+# 2021-09-27 rik: updating skype-2021.gpg key install, adding wasta
+#   libreoffice 7.1 ppa.
+#   - added neofetch, uptimed
 #
 # ==============================================================================
 
@@ -133,24 +136,24 @@ fi
 #   - sending output to null to not scare users
 apt-key add $DIR/keys/libreoffice-ppa.gpg > /dev/null 2>&1
 apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
-apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
+apt-key add $DIR/keys/skype-2021.gpg > /dev/null 2>&1
 
-# add LibreOffice 6.2 PPA
-# if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list ];
-# then
-#     echo
-#     echo "*** Adding LibreOffice 6.2 PPA"
-#     echo
-#     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-6-2/ubuntu $SERIES main" | \
-#         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
-#     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-2/ubuntu $SERIES main" | \
-#         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
-# else
-#     # found, but ensure LibreOffice PPA ACTIVE (user could have accidentally disabled)
-#     # DO NOT match any lines ending in #wasta
-#     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-#        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
-# fi
+# add LibreOffice 7.1 PPA
+if ! [ -e $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1-$SERIES.list ];
+then
+    echo
+    echo "*** Adding LibreOffice 7.1 PPA"
+    echo
+    echo "deb http://ppa.launchpad.net/wasta-linux/libreoffice-7-1/ubuntu $SERIES main" | \
+        tee $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1-$SERIES.list
+    echo "# deb-src http://ppa.launchpad.net/wasta-linux/libreoffice-7-1/ubuntu $SERIES main" | \
+        tee -a $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1-$SERIES.list
+else
+    # found, but ensure LibreOffice PPA ACTIVE (user could have accidentally disabled)
+    # DO NOT match any lines ending in #wasta
+    sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
+       $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1-$SERIES.list
+fi
 
 #echo
 #echo "*** Removing Older LibreOffice PPAs"
@@ -292,7 +295,8 @@ echo
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
 # mtp-tools: media-transfer-protocol tools: needed for smartphones
 # ncdu: terminal - ncurses disk usage analyzer tool
-# nethogs: CLI network monitor showing per application net usage
+# neofetch: terminal - displays system info
+# nethogs: terminal - network monitor showing per application net usage
 # net-tools: terminal - basic utilities like ifconfig
 # pandoc: terminal - general markup converter
 # pinta: MS Paint alternative: more simple for new users than gimp
@@ -324,6 +328,7 @@ echo
 # ubiquity-slideshow-wasta:
 # ubuntu-restricted-extras: mp3, flash, etc.
 # uget uget-integrator: GUI download manager (DTA in Firefox abandoned)
+# uptimed: terminal - provides "uprecords"
 # vim-tiny: terminal - text editor (don't want FULL vim or else in main menu)
 # vlc: play any audio or video files
 # wasta-backup: GUI for rdiff-backup
@@ -415,6 +420,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     modem-manager-gui \
     mtp-tools \
     ncdu \
+    neofetch \
     nethogs \
     net-tools \
     pandoc \
@@ -444,6 +450,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     ubiquity-frontend-gtk ubiquity-slideshow-wasta \
     ubuntu-restricted-extras \
     uget uget-integrator \
+    uptimed \
     vim-tiny \
     vlc \
     wasta-backup \

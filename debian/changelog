@@ -1,3 +1,9 @@
+wasta-core-focal (20.04.3.0) focal; urgency=medium
+
+  * 20.04.3 release: added uptimed, neofetch, wasta LO 7.1 ppa.
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 27 Sep 2021 15:00:35 -0500
+
 wasta-core-focal (20.04.2.3) focal; urgency=medium
 
   * postinst: adding skype-2021.gpg key (older one expired)
