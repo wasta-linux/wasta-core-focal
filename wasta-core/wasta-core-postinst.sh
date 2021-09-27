@@ -8,6 +8,7 @@
 #       only intended to be run at package installation.
 #
 #   2019-11-24 rik: initial focal script
+#   2021-09-27 rik: adding skype-2021.gpg key install
 #
 # ==============================================================================
 
@@ -108,6 +109,7 @@ echo
 #   - sending output to null to not scare users
 apt-key add $DIR/keys/sil-2016.gpg > /dev/null 2>&1
 apt-key add $DIR/keys/wasta-linux-ppa.gpg > /dev/null 2>&1
+apt-key add $DIR/keys/skype-2021.gpg > /dev/null 2>&1
 
 # add SIL repository
 if ! [ -e $APT_SOURCES_D/packages-sil-org-$SERIES.list ];
