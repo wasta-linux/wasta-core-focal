@@ -12,6 +12,7 @@
 # 2021-09-27 rik: updating skype-2021.gpg key install, adding wasta
 #   libreoffice 7.1 ppa.
 #   - added neofetch, uptimed
+# 2022-03-08 rik: added LO 7.2 PPA
 #
 # ==============================================================================
 
@@ -138,28 +139,27 @@ apt-key add $DIR/keys/libreoffice-ppa.gpg > /dev/null 2>&1
 apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
 apt-key add $DIR/keys/skype-2021.gpg > /dev/null 2>&1
 
-# add LibreOffice 7.1 PPA
-if ! [ -e $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1-$SERIES.list ];
+# add LibreOffice 7.2 PPA
+if ! [ -e $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-2-$SERIES.list ];
 then
     echo
-    echo "*** Adding LibreOffice 7.1 PPA"
+    echo "*** Adding LibreOffice 7.2 PPA"
     echo
-    echo "deb http://ppa.launchpad.net/wasta-linux/libreoffice-7-1/ubuntu $SERIES main" | \
-        tee $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1-$SERIES.list
-    echo "# deb-src http://ppa.launchpad.net/wasta-linux/libreoffice-7-1/ubuntu $SERIES main" | \
-        tee -a $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1-$SERIES.list
+    echo "deb http://ppa.launchpad.net/wasta-linux/libreoffice-7-2/ubuntu $SERIES main" | \
+        tee $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-2-$SERIES.list
+    echo "# deb-src http://ppa.launchpad.net/wasta-linux/libreoffice-7-2/ubuntu $SERIES main" | \
+        tee -a $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-2-$SERIES.list
 else
     # found, but ensure LibreOffice PPA ACTIVE (user could have accidentally disabled)
     # DO NOT match any lines ending in #wasta
     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-       $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1-$SERIES.list
+       $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-2-$SERIES.list
 fi
 
 #echo
 #echo "*** Removing Older LibreOffice PPAs"
 #echo
-#rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0*
-#rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1*
+rm -f $APT_SOURCES_D/wasta-linux-ubuntu-libreoffice-7-1*
 
 # Add Skype repository
 if ! [ -e $APT_SOURCES_D/skype-stable.list ];
@@ -199,11 +199,11 @@ fi
 
 apt-get update
 
-    LASTERRORLEVEL=$?
-    if [ "$LASTERRORLEVEL" -ne "0" ];
-    then
-        aptError
-    fi
+LASTERRORLEVEL=$?
+if [ "$LASTERRORLEVEL" -ne "0" ];
+then
+    aptError
+fi
 
 # ------------------------------------------------------------------------------
 # Upgrade ALL
@@ -215,11 +215,11 @@ echo
 
 $DEBIAN_NONINERACTIVE apt-get $YES dist-upgrade
 
-    LASTERRORLEVEL=$?
-    if [ "$LASTERRORLEVEL" -ne "0" ];
-    then
-        aptError
-    fi
+LASTERRORLEVEL=$?
+if [ "$LASTERRORLEVEL" -ne "0" ];
+then
+    aptError
+fi
 
 # ------------------------------------------------------------------------------
 # Standard package installs for all systems
@@ -467,11 +467,11 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     zim \
     "
 
-    LASTERRORLEVEL=$?
-    if [ "$LASTERRORLEVEL" -ne "0" ];
-    then
-        aptError
-    fi
+LASTERRORLEVEL=$?
+if [ "$LASTERRORLEVEL" -ne "0" ];
+then
+    aptError
+fi
 
 # ------------------------------------------------------------------------------
 # Language Support Files: install
