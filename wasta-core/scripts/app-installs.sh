@@ -14,6 +14,8 @@
 #   - added neofetch, uptimed
 # 2022-03-08 rik: added LO 7.2 PPA
 # 2022-03-11 rik: adding traffic-cop (replaces tt-bandwidth-manager)
+# 2022-03-24 rik: adding mkisofs since this version (from cdrtools) allows
+#   making ISOs > 4GB in size.
 #
 # ==============================================================================
 
@@ -292,6 +294,9 @@ echo
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
 # meld: graphical text file compare utility
 # mintinstall: allows seeing packages from external repos (ppas, sil)
+# mkisofs: teminal - this version (from cdrtools source package) allows ISOs
+#   > 4GB in size. Alternative version from main repos (genisoimage package)
+#   does NOT allow this. Included in the wasta-applications ppa
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
 # mtp-tools: media-transfer-protocol tools: needed for smartphones
@@ -417,6 +422,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     libtext-pdf-perl \
     meld \
     mintinstall \
+    mkisofs \
     mkusb-nox \
     modem-manager-gui \
     mtp-tools \
